@@ -15,6 +15,21 @@
   }
 
   $(function(){
+        //add datatables
+        $(document).ready(function(){
+          $('#studentTable').DataTable( {
+            fixedHeader: true,
+            responsive: true,
+            scrollY:        200,
+            deferRender:    true,
+            scroller:       true,
+            colReorder: true,
+            dom: 'Bfrtip',
+            buttons: [
+              'copy', 'csv', 'excel', 'pdf', 'print'
+            ]
+        } );
+      });
 
     //initialize variables for items in the DOM we will work with
     let manageStudentForm = $("#manageStudentForm");
@@ -68,6 +83,14 @@
         title: "Add Record",
         width: 700,
         modal: true,
+        close : function(event, ui) {
+          $("#first_name").val("");
+          $("#last_name").val("");
+          $("#start_date").val("");
+          $("#gpa").val("");
+          $("#sat").val("");
+          $("#major_id").val("");
+       },
         buttons: {
           Cancel: function() {
             $( this ).dialog( "close" );
